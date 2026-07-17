@@ -8,53 +8,61 @@ datasource db {
 }
 
 model Location {
-  id Int @id @default(autoincrement())
-
-  city    String
-  country String?
-
+  id        Int      @id @default(autoincrement())
+  city      String
+  region    String?
+  country   String
   latitude  Float
   longitude Float
+  createdAt DateTime @default(now())
 
   weatherRequests WeatherRequest[]
 
-  createdAt DateTime @default(now())
+  @@unique([city, country])
 }
 
 model WeatherRequest {
-  id Int @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
+  locationId  Int
+  searchedAt  DateTime @default(now())
 
-  locationId Int
-  location   Location @relation(fields: [locationId], references: [id])
+  // Current weather snapshot
+  temperature Float
+  humidity    Int
+  windSpeed   Float
+  condition   String
 
-  startDate DateTime
-  endDate   DateTime
+  // Optional extra weather information
+  feelsLike   Float?
+  uvIndex     Float?
+  pressure    Float?
+  visibility  Float?
 
-  temperature Float?
-  humidity    Float?
-  condition   String?
-  windSpeed   Float?
+  // Small JSON snapshot
+  rawData Json?
+
+  location Location @relation(fields: [locationId], references: [id])
 
   forecasts Forecast[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model Forecast {
-  id Int @id @default(autoincrement())
-
+  id               Int      @id @default(autoincrement())
   weatherRequestId Int
-
-  weatherRequest WeatherRequest @relation(fields: [weatherRequestId], references: [id], onDelete: Cascade)
 
   date DateTime
 
-  temperature Float
-  humidity    Float
-  windSpeed   Float
+  averageTemp Float
+  maxTemp     Float
+  minTemp     Float
+
+  humidity  Float
+  windSpeed Float
+
+  chanceOfRain Int?
 
   condition String
+  icon      String?
 
-  icon String?
+weatherRequest WeatherRequest @relation(fields: [weatherRequestId], references: [id], onDelete: Cascade)
 }
