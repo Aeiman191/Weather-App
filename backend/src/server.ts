@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import prisma from "./utils/prisma";
 import weatherRoutes from "./routes/weather.routes";
+import videoRoutes from "./routes/video.routes";
 
 dotenv.config();
 
@@ -15,6 +16,8 @@ app.use(
     "/api/weather",
     weatherRoutes
 );
+
+app.use("/api/videos", videoRoutes);
 
 app.get("/health", (req, res) => {
     res.json({

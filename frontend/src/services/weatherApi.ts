@@ -64,3 +64,38 @@ export const deleteWeatherSearch = async (
 export const getCsvExportUrl = () => {
   return `${weatherApi.defaults.baseURL}/export/csv`;
 };
+
+
+export interface TravelVideo {
+  videoId: string;
+  title: string;
+  description: string;
+  channelTitle: string;
+  publishedAt: string;
+  thumbnail: string;
+  youtubeUrl: string;
+  embedUrl: string;
+}
+
+interface TravelVideoResponse {
+  location: string;
+  count: number;
+  videos: TravelVideo[];
+}
+
+export const getTravelVideos = async (
+  location: string
+): Promise<TravelVideo[]> => {
+  const response =
+    await axios.get<TravelVideoResponse>(
+      "http://localhost:5000/api/videos",
+      {
+        params: {
+          location,
+          limit: 6,
+        },
+      }
+    );
+
+  return response.data.videos;
+};
