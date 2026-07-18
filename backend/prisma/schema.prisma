@@ -26,6 +26,9 @@ model WeatherRequest {
   locationId  Int
   searchedAt  DateTime @default(now())
 
+  startDate DateTime
+  endDate   DateTime
+
   // Current weather snapshot
   temperature Float
   humidity    Int
