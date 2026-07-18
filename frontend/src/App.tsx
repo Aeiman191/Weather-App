@@ -698,9 +698,41 @@ function App() {
                 </div>
               </article>
             ))}
+              
           </div>
         )}
       </section>
+      <footer className="app-footer">
+  <div className="footer-content">
+
+    <h3>Weather Dashboard</h3>
+
+    <p className="footer-author">
+      Developed by <strong>Aeiman Imtiaz</strong>
+    </p>
+
+    <h4>About Product Manager Accelerator</h4>
+
+    <p>
+      The Product Manager Accelerator Program is designed to support PM professionals
+      through every stage of their careers. From students looking for entry-level jobs
+      to Directors looking to take on leadership roles, the program has helped hundreds
+      of students fulfill their career aspirations.
+    </p>
+
+    <p>
+      The Product Manager Accelerator community is ambitious and committed.
+      Through the program members develop practical Product Management
+      and leadership skills that provide a strong foundation for future
+      career growth.
+    </p>
+
+    <p className="copyright">
+      © {new Date().getFullYear()} Aeiman Imtiaz
+    </p>
+
+  </div>
+</footer>
     </main>
   );
 }
