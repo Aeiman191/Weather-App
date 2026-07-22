@@ -316,6 +316,7 @@ VITE_API_BASE_URL=http://localhost:5000/api
 ![alt text](image-1.png)
 
 ---
+<img width="2526" height="974" alt="image" src="https://github.com/user-attachments/assets/f47d4ebd-d559-4dc3-bbd4-16385064f295" />
 
 # Demo Video
 
